@@ -93,7 +93,13 @@ const Interface = () => {
         </Flex>
         <br />
         <Center>
-          <Button size="md" type="submit" colorScheme="teal" onClick={addBug}>
+          <Button
+            data-testid="addButton"
+            size="md"
+            type="submit"
+            colorScheme="teal"
+            onClick={addBug}
+          >
             Add New Bug
           </Button>
         </Center>
