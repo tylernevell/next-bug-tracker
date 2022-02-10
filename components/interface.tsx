@@ -8,11 +8,12 @@ import {
   Input,
   Select,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import type { BugPriority, BugTracker } from '../types/types';
 import { v4 as uuidv4 } from 'uuid';
 import { BugListTable } from './bug-list-table';
+import { useDebounce } from '../hooks/use-debounce';
 
 const Interface = () => {
   const [newBugDescription, setNewBugDescription] = useState('');

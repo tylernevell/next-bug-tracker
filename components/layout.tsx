@@ -11,7 +11,7 @@ const Layout = () => {
           spacing={10}
           p={10}
           alignItems="flex-start"
-          bg="gray.100"
+          bg="gray.50"
         >
           <Interface />
         </VStack>
