@@ -1,6 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { BugPriority, BugTracker } from '../types/types';
+import type { BugTracker } from '../types/types';
+import { BugPriority } from '../types/types';
 import { BugListTable } from './bug-list-table';
 
 test('the bug table should display a list of bugs', () => {
@@ -50,4 +51,24 @@ test('the resolved button should remove the bug', () => {
       priority: BugPriority.HIGH,
     },
   ];
+
+  const removeBug = (id: string) => {
+    bugList = bugList.filter((bug) => bug.id !== id);
+  };
+
+  // render before click event
+  const { rerender } = render(
+    <BugListTable bugs={bugList} onDeleteBug={(id: string) => removeBug(id)} />
+  );
+
+  // click event
+  fireEvent.click(screen.getAllByText('Resolved')[0]);
+
+  // render after click event
+  rerender(
+    <BugListTable bugs={bugList} onDeleteBug={(id: string) => removeBug(id)} />
+  );
+
+  const rows = screen.getAllByRole('row');
+  expect(rows.length).toBe(3);
 });
