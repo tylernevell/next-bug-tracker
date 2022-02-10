@@ -42,7 +42,10 @@ const Interface = () => {
   return (
     <>
       <Heading size="2xl">🪲 Bug Tracker</Heading>
-
+      <BugListTable
+        bugs={bugList}
+        onDeleteBug={(id: string) => deleteBug(id)}
+      />
       <FormControl onSubmit={addBug}>
         <Flex>
           <FormLabel
@@ -61,6 +64,7 @@ const Interface = () => {
             bg="white"
             mb="2"
             onChange={(event) => setNewBugDescription(event.target.value)}
+            value={newBugDescription}
           />
         </Flex>
         <Flex>
@@ -87,7 +91,7 @@ const Interface = () => {
         </Flex>
         <br />
         <Center>
-          <Button size="md" type="submit" colorScheme="teal">
+          <Button size="md" type="submit" colorScheme="teal" onClick={addBug}>
             Add New Bug
           </Button>
         </Center>

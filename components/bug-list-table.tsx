@@ -12,6 +12,7 @@ const BugListTable = (props: BugListTableProps) => {
   const resolvedPressed = (id: string) => {
     onDeleteBug(id);
   };
+  console.log(bugs, bugs.length);
 
   return (
     <Table>
