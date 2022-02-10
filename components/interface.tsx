@@ -66,6 +66,7 @@ const Interface = () => {
             mb="2"
             onChange={(event) => setNewBugDescription(event.target.value)}
             value={newBugDescription}
+            data-testid="newBugDescription"
           />
         </Flex>
         <Flex>

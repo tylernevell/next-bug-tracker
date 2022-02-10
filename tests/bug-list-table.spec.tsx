@@ -2,7 +2,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import type { BugTracker } from '../types/types';
 import { BugPriority } from '../types/types';
-import { BugListTable } from './bug-list-table';
+import { BugListTable } from '../components/bug-list-table';
 
 test('the bug table should display a list of bugs', () => {
   const bugList: BugTracker[] = [
