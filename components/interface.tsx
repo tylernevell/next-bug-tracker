@@ -8,11 +8,12 @@ import {
   Input,
   Select,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import type { BugPriority, BugTracker } from '../types/types';
 import { v4 as uuidv4 } from 'uuid';
 import { BugListTable } from './bug-list-table';
+import { useDebounce } from '../hooks/use-debounce';
 
 const Interface = () => {
   const [newBugDescription, setNewBugDescription] = useState('');
@@ -42,7 +43,10 @@ const Interface = () => {
   return (
     <>
       <Heading size="2xl">🪲 Bug Tracker</Heading>
-
+      <BugListTable
+        bugs={bugList}
+        onDeleteBug={(id: string) => deleteBug(id)}
+      />
       <FormControl onSubmit={addBug}>
         <Flex>
           <FormLabel
@@ -61,6 +65,8 @@ const Interface = () => {
             bg="white"
             mb="2"
             onChange={(event) => setNewBugDescription(event.target.value)}
+            value={newBugDescription}
+            data-testid="newBugDescription"
           />
         </Flex>
         <Flex>
@@ -87,7 +93,13 @@ const Interface = () => {
         </Flex>
         <br />
         <Center>
-          <Button size="md" type="submit" colorScheme="teal">
+          <Button
+            data-testid="addButton"
+            size="md"
+            type="submit"
+            colorScheme="teal"
+            onClick={addBug}
+          >
             Add New Bug
           </Button>
         </Center>

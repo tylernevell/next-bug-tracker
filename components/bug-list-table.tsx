@@ -14,7 +14,12 @@ const BugListTable = (props: BugListTableProps) => {
   };
 
   return (
-    <Table>
+    <Table
+      border="solid"
+      borderColor="lightslategrey"
+      variant="striped"
+      bg="white"
+    >
       <Thead>
         <Tr>
           <Th>Description</Th>
@@ -43,6 +48,8 @@ const BugListTable = (props: BugListTableProps) => {
         ) : (
           <Tr>
             <Td>No bugs found.</Td>
+            <Td></Td>
+            <Td></Td>
           </Tr>
         )}
       </Tbody>
