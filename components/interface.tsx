@@ -8,45 +8,48 @@ import {
   Input,
   Select,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { FormEvent } from 'react';
 import type { BugPriority, BugTracker } from '../types/types';
 import { v4 as uuidv4 } from 'uuid';
 import { BugListTable } from './bug-list-table';
 import { useDebounce } from '../hooks/use-debounce';
+import { useBugs } from '../hooks/use-bugs';
+import { mutate } from 'swr';
 
 const Interface = () => {
   const [newBugDescription, setNewBugDescription] = useState('');
   const [newBugPriority, setNewBugPriority] = useState('Medium');
   const [bugList, setBugList] = useState<BugTracker[]>([]);
 
-  const addBug = (event: FormEvent) => {
+  const { bugs } = useBugs();
+
+  const addBug = async (event: FormEvent) => {
     event.preventDefault();
+
     const newBug: BugTracker = {
       id: uuidv4(),
       description: newBugDescription,
       priority: newBugPriority as BugPriority,
     };
+    mutate('/api/bugs', [...bugs, newBug], false);
 
-    setBugList((bugs) => [...bugs, newBug]);
+    // setBugList((bugs) => [...bugs, newBug]);
 
     setNewBugDescription('');
     setNewBugPriority('Medium');
   };
 
   const deleteBug = (id: string) => {
-    const bugs = bugList.filter((bug) => bug.id !== id);
-
-    setBugList(bugs);
+    const newBugList = bugs.filter((bug: BugTracker) => bug.id !== id);
+    mutate('/api/bugs', newBugList, false);
+    // setBugList(newBugList);
   };
 
   return (
     <>
       <Heading size="2xl">🪲 Bug Tracker</Heading>
-      <BugListTable
-        bugs={bugList}
-        onDeleteBug={(id: string) => deleteBug(id)}
-      />
+      <BugListTable bugs={bugs} onDeleteBug={(id: string) => deleteBug(id)} />
       <FormControl onSubmit={addBug}>
         <Flex>
           <FormLabel

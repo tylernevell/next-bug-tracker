@@ -7,7 +7,7 @@ export enum BugPriority {
 export interface BugTracker {
   id: string;
   description: string;
-  priority: BugPriority;
+  priority: string;
 }
 
 export interface BugListTableProps {

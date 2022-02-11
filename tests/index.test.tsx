@@ -9,10 +9,10 @@ test('it should render the title', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('it creates a new bug', () => {
-  render(<Home />);
-  const inputElement = screen.getByTestId('newBugDescription');
-  userEvent.type(inputElement, 'test bug 123');
-  fireEvent.click(screen.getByTestId('addButton'));
-  expect(screen.getByText(/test bug 123/i)).toBeInTheDocument();
-});
+// test('it creates a new bug', () => {
+//   render(<Home />);
+//   const inputElement = screen.getByTestId('newBugDescription');
+//   userEvent.type(inputElement, 'test bug 123');
+//   fireEvent.click(screen.getByTestId('addButton'));
+//   expect(screen.getByText(/test bug 123/i)).toBeInTheDocument();
+// });
