@@ -16,7 +16,7 @@ const Home: NextPage = () => {
     <div>
       <Flex p="4">
         <Box p="2">
-          <Heading size="lg">🪲 Bug Tracker</Heading>
+          <Heading size="lg">🪲</Heading>
         </Box>
         <Spacer />
         <Box>

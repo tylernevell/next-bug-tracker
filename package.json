@@ -7,17 +7,22 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "migrate": "prisma migrate dev --preview-feature",
+    "generate": "prisma generate",
+    "format": "prisma format"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@prisma/client": "^3.9.2",
     "framer-motion": "^5.6.0",
     "next": "12.0.10",
     "next-auth": "^4.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "swr": "^1.2.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -31,6 +36,7 @@
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
     "jest": "^27.5.1",
+    "prisma": "^3.9.2",
     "typescript": "4.5.5"
   }
 }
