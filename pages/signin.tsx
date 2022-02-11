@@ -1,8 +1,16 @@
 import { Container, Flex, VStack } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
+import router from 'next/router';
+import { useEffect } from 'react';
 
 const SignIn = () => {
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      router.push('/app');
+    }
+  }, [session]);
 
   return (
     <Container maxW="container.xl">
