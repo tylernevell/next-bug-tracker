@@ -33,6 +33,7 @@ const Interface = () => {
       priority: newBugPriority as BugPriority,
     };
     mutate('/api/bugs', [...bugs, newBug], false);
+
     // setBugList((bugs) => [...bugs, newBug]);
 
     setNewBugDescription('');
